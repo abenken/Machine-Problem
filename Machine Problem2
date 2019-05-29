@@ -1,0 +1,128 @@
+#include <iostream>
+#include <iomanip>
+// Header <cmath> declares a set of functions to compute common mathematical operations and transformations:
+#include <cmath>
+using namespace std;
+int main()
+{
+	// Use double for the most accurate possible answer.
+	double a,b,c,d,e,f,g,h,i,j;
+	float pi,anglea,angleb,anglec,pmeter1,pmeter2,area,apothem,circumcenter;
+	//The name of the triangle is ABC with lengths AB, AC, and BC.
+	cout<<"Input the lengths of each sides of the triangle.";
+	cout<<endl<<endl;
+	cout<<"Length of side AB: ";
+	cin>>a;
+	cout<<"Length of side AC: ";
+	cin>>b;
+	cout<<"Length of side BC: ";
+	cin>>c;
+	cout<<endl<<endl;
+	// There is no function in C++ that tells the value of Pi instead declare its value.
+	pi = 3.14159265359;
+	// The Pythagorean theorem is only applicable for right triangles.
+	// Using the Cosine law, the value of an angle of any types of triangle can be compute.
+	// The Cosine law is C^2 = A^2 + B^2 - 2AB cos(C).
+	d = (a*a) + (b*b) - (c*c);
+	e = 2*(a*b);
+	f = d/e;
+	g = acos(f);
+	// Convert radians into degrees since the value after using arccosine is in radian. 
+	h = pi/g;
+	anglea = 180/h;
+	cout<<"Angle A: "<<anglea<<" Degrees"<<"\n";
+	// C++ reads the program by top down approach, hence reusing some of the variables can make the program look cleaner and less confusing.
+	d = (a*a) + (c*c) - (b*b);
+	e =2*(a*c);
+	f= d/e;
+	g = acos(f);
+	h = pi/g;
+	angleb = 180/h;
+	cout<<"Angle B: "<<angleb<<" Degrees"<<"\n";
+	// After getting the first 2 missing angles, the 3rd angle can now be easily computed
+	// By adding the first 2 angles minus 180 (which is the sum of all internal angles of triangle) the results will be the last missing angle.
+	anglec = anglea + angleb - 180;
+	cout<<"Angle C: "<<-anglec<<" Degrees"<<"\n";
+	// Control statements was used if it's equilateral, isosceles or isosceles triangle.
+	// A triangle is an equilateral triangle if and only if all sides are equal.
+	if(a==b && b==c)
+	{
+		cout<<"\n\nThe triangle is an equilateral triangle.";
+	}
+	// An isosceles triangle has 2 equal sides. It has 3 different scenarios where sides A=B, A=C, or B=C.
+	else if (a==b)
+	{
+		cout<<"\n\nThe triangle is an isosceles triangle.";
+	}
+	else if (a==c)
+	{
+		cout<<"\n\nThe triangle is an isosceles triangle.";
+	}
+	else if (b==c)
+	{
+		cout<<"\n\nThe triangle is an isosceles triangle.";
+	}
+	// If any of this are not met it can only lead into the triangle being a scalene triangle.
+	else
+	{
+		cout<<"\n\nThe triangle is a scalene triangle.";
+	}
+	// Perimeter is the sum of all sides.
+	pmeter1 = a+b+c;
+	cout<<"\nThe perimeter is: "<<pmeter1;
+	// Since all 3 sides are known, Heron's formula was used.
+	pmeter2 = pmeter1/2;
+	i = pmeter2*(pmeter2-a)*(pmeter2-b)*(pmeter2-c);
+	// Using the function "sqrt()" to find the square root.
+	area = sqrt(i);
+	cout<<"\n\n\nThe area is: "<<area;
+	// Control statement was also used to find if the triangle is right, obtuse or acute triangle.
+	// A right has one angle equal to 90 degrees. It has 3 scenarios where angle A=90, B=90 or C=90.
+	j=90;
+		if (anglea==j)
+	{
+		cout<<"\n\n\nThe triangle is a right triangle.";
+	}	
+	else if (angleb==j)
+	{
+		cout<<"\n\n\nThe triangle is a right triangle.";
+	}
+	else if (anglec==-j)
+	{
+		cout<<"\n\n\nThe triangle is a right triangle.";
+	}
+	// A triangle is obtuse if its angle A>90, B>90 or C>90.
+	else if (anglea>j)
+	{
+		cout<<"\n\n\nThe triangle is an obtuse triangle.";
+	}
+	else if (angleb>j)
+	{
+		cout<<"\n\n\nThe triangle is an obtuse triangle.";
+	}
+	else if (anglec>j)
+	{
+		cout<<"\n\n\nThe triangle is an obtuse triangle.";
+	}
+	// If the conditions is not met the resulting triangle is an acute triangle. A triangle is acute if all of its angle is less than 90 degrees.
+	else
+	{
+		cout<<"\n\n\nThe triangle is an acute triangle.";
+	}
+	// To get the apothem a triangle must only be an equilateral triangle.
+	// Use a control statement to find out if the triangle is equilateral.
+	if (a==b && b==c)
+	{
+		apothem = (2*area)/pmeter1;
+		cout<<"\n\n\nThe apothem of the triangle is: "<<apothem;
+	}
+	// If the triangle is not equilateral there is no apothem.
+	else
+	{
+		cout<<"\n\n\nAny irregular polygons has no defined apothem. Equilateral triangle is the only one who has apothem";
+  	}
+  	// The circumcenter is the center of the circle such that all three vertices of the triangle are the same distance away from the circumcenter.
+  	circumcenter = a*b*c/(4*area);
+  	cout<<"\nThe circumcenter of the triangle is: "<<circumcenter;	
+	return 0;
+}
